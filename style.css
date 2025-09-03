@@ -1,7 +1,19 @@
 body {
     background-color: rgb(255, 0, 0);
+      font-family: "Birthstone", cursive;
 }
 footer{
     background-color: rgb(30, 6, 245);
     color: aquamarine;
-}
+    position: fixed;
+    bottom: 0 ;
+    width: 100%;
+  }
+  footer p {
+    text-align: center;
+    font: 0.6rem;
+    margin-top: 0.5rem;
+  }
+
+
+  
