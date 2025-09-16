@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(5, 184, 255);
+  background-color: url('img/bg-desktop.webp');
   font-family: "Birthstone", cursive;
   color: rgb(0, 0, 0);
 }
@@ -43,4 +43,10 @@ footer p {
   margin: 0.6rem;border-radius: 0.6rem;
   font-size: 5vw;
 
+}
+
+:root {
+    --text-color: #f7f7f7;
+    --card-front-color: #144480;
+    --card-back-color: #00F4BF;
 }
