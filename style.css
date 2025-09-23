@@ -48,14 +48,14 @@ footer p {
   position: absolute;
   margin: 0.6rem;
   border-radius: 0.6rem;
-  font-size: 5vw;
+  font-size: 3vw;
   backface-visibility: hidden;
-
+   background-color: aliceblue;
 }
 
 :root {
   --text-color: #ffffff;
-  --card-front-color: #000263;
+  --card-front-color: #2500f8;
   --card-back-color: #00F4BF;
 }
 
