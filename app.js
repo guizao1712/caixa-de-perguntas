@@ -12,4 +12,8 @@ function criarCartao(categoria, pergunta,   resposta) {
                         <p> 2 </p>
                     </div>
                 </div>
-    }
+                container.appendChild(cartao)
+    
+                
+                 respostaEstaVisivel = !respostaEstaVisivel
+            }
