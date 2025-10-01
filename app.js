@@ -2,6 +2,7 @@ function criarCartao(categoria, pergunta,   resposta) {
     let container = document. getElementById ('container')
     let cartao = document. createElement( 'article')
     cartao.className = 'cartao'
+
     cartao.innerHTML = 
     <div class="cartao_conteudo">
                     <h3> MATEMÁTICA básica </h3>
@@ -14,6 +15,9 @@ function criarCartao(categoria, pergunta,   resposta) {
                 </div>
                 container.appendChild(cartao)
     
-                
+                let respostaEstaVisivel= false
+                function viraCartao(){
+                }
                  respostaEstaVisivel = !respostaEstaVisivel
+                 let respostaEstaVisivel = true
             }
