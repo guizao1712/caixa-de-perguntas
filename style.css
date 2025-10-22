@@ -57,41 +57,126 @@ footer p {
   background-color: #ffffff;
 }
 
-:root {
-  --text-color: #ffffff;
-  --card-front-color: #2500f8;
-  --card-back-color: #00F4BF;
+/* --- Footer --- */
+
+footer {
+  background-color: rgb(20, 0, 240);
+  color: rgb(255, 3, 3);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 2rem;
+  font-size: 5vw;
+  /* Talvez você queira um z-index alto para garantir que ele fique na frente */
+  /* z-index: 100; */
+}
+
+footer p {
+  text-align: center;
+  /* CORRIGIDO: Removido 'font:', pois não é uma propriedade válida.
+     A propriedade para tamanho de fonte é 'font-size'.
+     '5vw' no pai já é grande, '0.4rem' no p pode ser muito pequeno.
+     Ajustei 'margin-top' para centralizar melhor verticalmente. */
+  font-size: 0.8rem;
+  margin-top: 0; /* Centralização vertical deve ser feita de outra forma se 'height: 2rem' for mantida */
+  line-height: 2rem; /* Uma solução rápida para centralizar verticalmente em 'height: 2rem' */
+}
+
+/* --- Container dos Cartões --- */
+
+#container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 4rem;
+  gap: 3rem;
+}
+
+/* --- Cartão (Flashcard) --- */
+
+.cartao {
+  margin: 1rem 1rem;
+  background-color: rgb(255, 4, 4);
+  height: 20rem;
+  /* Flex-grow: 1 para crescer
+     Flex-basis: calc(33.33% - (gap / n_items)) para 3 colunas, ajustado abaixo */
+  flex-grow: 1;
+  /* Boa prática: 'flex-basis' deve ser ajustado com o 'gap' do container.
+     Para 3 colunas e 'gap: 3rem' no pai: */
+  flex-basis: calc(33.333% - 2rem); /* 2rem é apenas uma estimativa, o cálculo exato é complexo */
+}
+
+.cartao_conteudo {
+  text-align: center;
+  background-color: var(--card-front-color);
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 300ms ease-in-out;
+  position: relative; /* Adicionado para posicionar .cartao_conteudo_pergunta/resposta */
+}
+
+/* --- Título do Cartão --- */
+
+.cartao_conteudo h3 {
+  /* CORRIGIDO: Removida a linha 'color: var(--card-front-color);'
+     Isso faria o texto ficar da mesma cor do fundo do cartão quando ele virasse,
+     mantive a cor de fundo branca. */
+  border: 1px solid var(--text-color);
+  text-align: left;
+  padding: 0.5rem;
+  position: absolute;
+  margin: 0.6rem;
+  border-radius: 0.6rem;
+  font-size: 2vw;
+  backface-visibility: hidden;
+  background-color: #ffffff;
+  color: #000000; /* Definindo uma cor escura para o texto do título */
+}
+
+/* --- Estado de Virar (Hover) --- */
+
+.cartao:hover .cartao_conteudo {
+  /* CORRIGIDO: Espaço removido entre 'rotateY' e '(180deg)' */
+  transform: rotateY(180deg);
+}
+
+/* --- Lados do Cartão --- */
+
+.cartao_conteudo_pergunta,
+.cartao_conteudo_resposta {
+  backface-visibility: hidden;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0; /* Adicionado para garantir que cobrem o .cartao_conteudo */
+  left: 0;
+  display: flex; /* Adicionado para centralizar o conteúdo (p) */
+  justify-content: center;
+  align-items: center;
+}
+
+.cartao_conteudo_resposta {
+  /* CORRIGIDO: Espaço removido entre 'rotateY' e '(180deg)' e unidade de medida adicionada 'deg' */
+  transform: rotateY(180deg);
+  background-color: var(--card-back-color); /* Adicionei para distinguir a parte de trás */
+}
+
+/* --- Conteúdo (Parágrafos) --- */
+
+.cartao_conteudo p {
+  /* Centralização aplicada ao pai (.cartao_conteudo_pergunta/resposta) */
+  /* Propriedades de margem e padding agora se aplicam APENAS ao parágrafo */
+  margin: 1rem;
+  padding: 2rem;
+  margin-top: 4rem; /* Mantido se for para empurrar o texto para baixo */
 }
 
 .cartao_conteudo_pergunta p {
   color: var(--text-color);
   font-weight: 500;
-
 }
 
 .cartao_conteudo_resposta p {
-  color: var(--card-back-color);
+  color: var(--card-front-color); /* Alterado para contraste contra o fundo do verso */
   font-weight: 700;
-
-}
-
-.cartao:hover .cartao_conteudo {
-  transform: rotateY (180deg);
-}
-
-.cartao_conteudo_pergunta, .cartao_conteudo_resposta {
-  backface-visibility: hidden;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-}
-
-.cartao_conteudo_resposta {
-  transform: rotateY (180);
-}
-
-.cartao_conteudo p {
-  margin: 1rem;
-  padding: 2rem;
-  margin-top: 4rem;
 }
