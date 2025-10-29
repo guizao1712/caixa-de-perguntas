@@ -1,7 +1,7 @@
 body {
   background: url('img/bg-desktop.webp');
   font-family: "Oswald", sans-serif;
-  color: rgb(255, 255, 255);
+  
 }
 
 footer {
@@ -32,7 +32,7 @@ footer p {
   margin: 1rem 1rem;
   background-color:rgb(255,4,4);
   height: 20rem;
-  flex-grow: 1;
+  flex-grow: 1 0 calc(100% - 1rem);
   flex-basis: calc(33% - 6rem);
 }
 
@@ -52,10 +52,14 @@ footer p {
   position: absolute;
   margin: 0.6rem;
   border-radius: 0.6rem;
-  font-size: 2vw;
+  font-size: 3vw;
   backface-visibility: hidden;
   background-color: #ffffff;
 }
+ :root {
+  --text-color: #efc8f3;
+  --card-fornt-color: #ffff;
+  --card-back-color: #5f1515; }
 
 /* --- Footer --- */
 
@@ -148,6 +152,9 @@ footer p {
   position: absolute;
   height: 100%;
   width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  align-items: center;
   top: 0; /* Adicionado para garantir que cobrem o .cartao_conteudo */
   left: 0;
   display: flex; /* Adicionado para centralizar o conteúdo (p) */
@@ -159,6 +166,8 @@ footer p {
   /* CORRIGIDO: Espaço removido entre 'rotateY' e '(180deg)' e unidade de medida adicionada 'deg' */
   transform: rotateY(180deg);
   background-color: var(--card-back-color); /* Adicionei para distinguir a parte de trás */
+  border: 4px solid var(--card-back-color);
+  text-align: center;
 }
 
 /* --- Conteúdo (Parágrafos) --- */
@@ -169,14 +178,24 @@ footer p {
   margin: 1rem;
   padding: 2rem;
   margin-top: 4rem; /* Mantido se for para empurrar o texto para baixo */
+  font-size: 2.8vw;
 }
 
 .cartao_conteudo_pergunta p {
   color: var(--text-color);
   font-weight: 500;
+  text-align: center;
+  align-items: center;
 }
 
 .cartao_conteudo_resposta p {
   color: var(--card-front-color); /* Alterado para contraste contra o fundo do verso */
   font-weight: 700;
+  margin-top: 4rem;
+  font-size: 2.8vw;
+  text-align: center;
+  align-items: center;
+}
+@media (max-width: 560px){
+  body
 }
