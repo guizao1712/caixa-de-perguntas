@@ -1,204 +1,96 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Oswald", sans-serif;
+}
+
+/* Fundo da página */
 body {
-  background: url('img/bg-desktop.webp');
-  font-family: "Oswald", sans-serif;
-  
+    background-color: #000; /* preto */
+    color: #fff; /* branco */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-footer {
-  background-color: rgb(20, 0, 240);
-  color: rgb(255, 3, 3);
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 2rem;
-  font-size: 5vw;
+/* Centraliza o conteúdo principal */
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
 }
 
-footer p {
-  text-align: center;
-  font: 0.4rem;
-  margin-top: 0.5rem;
-}
-
+/* Container dos cartões */
 #container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 4rem;
-  gap: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
 }
 
+/* Estilo dos cartões */
 .cartao {
-  margin: 1rem 1rem;
-  background-color:rgb(255,4,4);
-  height: 20rem;
-  flex-grow: 1 0 calc(100% - 1rem);
-  flex-basis: calc(33% - 6rem);
+    background-color: #fff;
+    color: #000;
+    width: 220px;
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+.cartao:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+}
+
+/* Conteúdo interno */
 .cartao_conteudo {
-  text-align: center;
-  background-color: var(--card-front-color);
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 300ms ease-in-out;
+    text-align: center;
+    padding: 15px;
 }
 
+/* Título */
 .cartao_conteudo h3 {
-  color: var(--card-front-color);
-  border: 1px solid var(--text-color);
-  text-align: left;
-  padding: 0.5rem;
-  position: absolute;
-  margin: 0.6rem;
-  border-radius: 0.6rem;
-  font-size: 3vw;
-  backface-visibility: hidden;
-  background-color: #ffffff;
+    margin-bottom: 15px;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
- :root {
-  --text-color: #ffffff;
-  --card-fornt-color: #fa0000;
-  --card-back-color: #5f1515; }
 
-/* --- Footer --- */
+/* Perguntas */
+.cartao_conteudo_pergunta p:first-child {
+    font-weight: bold;
+}
 
+/* Respostas — escondidas por padrão */
+.cartao_conteudo_pergunta:last-child {
+    display: none;
+}
+
+/* Mostrar resposta ao passar o mouse */
+.cartao:hover .cartao_conteudo_pergunta:last-child {
+    display: block;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #000;
+}
+
+/* Rodapé */
 footer {
-  background-color: rgb(20, 0, 240);
-  color: rgb(255, 3, 3);
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 2rem;
-  font-size: 5vw;
-  /* Talvez você queira um z-index alto para garantir que ele fique na frente */
-  /* z-index: 100; */
-}
-
-footer p {
-  text-align: center;
-  /* CORRIGIDO: Removido 'font:', pois não é uma propriedade válida.
-     A propriedade para tamanho de fonte é 'font-size'.
-     '5vw' no pai já é grande, '0.4rem' no p pode ser muito pequeno.
-     Ajustei 'margin-top' para centralizar melhor verticalmente. */
-  font-size: 0.8rem;
-  margin-top: 0; /* Centralização vertical deve ser feita de outra forma se 'height: 2rem' for mantida */
-  line-height: 2rem; /* Uma solução rápida para centralizar verticalmente em 'height: 2rem' */
-  font-size: 3vw;
-}
-
-/* --- Container dos Cartões --- */
-
-#container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 4rem;
-  gap: 3rem;
-}
-
-/* --- Cartão (Flashcard) --- */
-
-.cartao {
-  margin: 1rem 1rem;
-  background-color: rgb(29, 4, 255);
-  height: 20rem;
-  /* Flex-grow: 1 para crescer
-     Flex-basis: calc(33.33% - (gap / n_items)) para 3 colunas, ajustado abaixo */
-  flex-grow: 1;
-  /* Boa prática: 'flex-basis' deve ser ajustado com o 'gap' do container.
-     Para 3 colunas e 'gap: 3rem' no pai: */
-  flex-basis: calc(33.333% - 2rem); /* 2rem é apenas uma estimativa, o cálculo exato é complexo */
-}
-
-.cartao_conteudo {
-  text-align: center;
-  background-color: var(--card-front-color);
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 300ms ease-in-out;
-  position: relative; /* Adicionado para posicionar .cartao_conteudo_pergunta/resposta */
-}
-
-/* --- Título do Cartão --- */
-
-.cartao_conteudo h3 {
-  /* CORRIGIDO: Removida a linha 'color: var(--card-front-color);'
-     Isso faria o texto ficar da mesma cor do fundo do cartão quando ele virasse,
-     mantive a cor de fundo branca. */
-  border: 1px solid var(--text-color);
-  text-align: left;
-  padding: 0.5rem;
-  position: absolute;
-  margin: 0.6rem;
-  border-radius: 0.6rem;
-  font-size: 2vw;
-  backface-visibility: hidden;
-  background-color: #ffffff;
-  color: #000000; /* Definindo uma cor escura para o texto do título */
-}
-
-/* --- Estado de Virar (Hover) --- */
-
-.cartao:hover .cartao_conteudo {
-  /* CORRIGIDO: Espaço removido entre 'rotateY' e '(180deg)' */
-  transform: rotateY(180deg);
-}
-
-/* --- Lados do Cartão --- */
-
-.cartao_conteudo_pergunta,
-.cartao_conteudo_resposta {
-  backface-visibility: hidden;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  box-sizing: border-box;
-  text-align: center;
-  align-items: center;
-  top: 0; /* Adicionado para garantir que cobrem o .cartao_conteudo */
-  left: 0;
-  display: flex; /* Adicionado para centralizar o conteúdo (p) */
-  justify-content: center;
-  align-items: center;
-}
-
-.cartao_conteudo_resposta {
-  /* CORRIGIDO: Espaço removido entre 'rotateY' e '(180deg)' e unidade de medida adicionada 'deg' */
-  transform: rotateY(180deg);
-  background-color: var(--card-back-color); /* Adicionei para distinguir a parte de trás */
-  border: 4px solid var(--card-back-color);
-  text-align: center;
-}
-
-/* --- Conteúdo (Parágrafos) --- */
-
-.cartao_conteudo p {
-  /* Centralização aplicada ao pai (.cartao_conteudo_pergunta/resposta) */
-  /* Propriedades de margem e padding agora se aplicam APENAS ao parágrafo */
-  margin: 1rem;
-  padding: 2rem;
-  margin-top: 4rem; /* Mantido se for para empurrar o texto para baixo */
-  font-size: 2.8vw;
-}
-
-.cartao_conteudo_pergunta p {
-  color: var(--text-color);
-  font-weight: 500;
-  text-align: center;
-  align-items: center;
-}
-
-.cartao_conteudo_resposta p {
-  color: var(--card-front-color); /* Alterado para contraste contra o fundo do verso */
-  font-weight: 700;
-  margin-top: 4rem;
-  font-size: 2.8vw;
-  text-align: center;
-  align-items: center;
-}
-@media (max-width: 560px){
-  body{
-   background: url('img/bg-mobile.webp');
-  }
+    background-color: #111;
+    text-align: center;
+    padding: 15px;
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 1px;
 }
